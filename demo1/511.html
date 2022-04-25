@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Typing effect with js</title>
+  <style>
+      *{box-sizing: border-box;}
+      body{padding: 0;margin: 0;}
+      #myDiv{max-width: 800px;width: 95%;;margin: 30px auto;box-shadow: 0 0 30px 3px rgba(0,0,0,.1);padding: 20px;}
+  </style>
+</head>
+<body>
+<div id="myDiv"></div>
+<script>
+window.onload = async function () {
+    let strArr=[
+        '作为山蛋蛋或者橘子皮，或者海哲姐姐，2021年是我们最开心也最难过的一年',
+        '我们开心遇见了最好的人，我们难过失去了最好的人',
+        '2022年，我们有太多的愿望，譬如疫情结束、家人安康、朋友平安喜乐、国泰民安、还有我们能再见一面',
+        '可愿望太多，菩萨都来不及一一帮我们实现',
+        '现在只希望我们你们他们大家不再失去已得到的一切',
+        '我们都相信，对的人，兜兜转转还是会相遇',
+        '遇见已经是上上签了',
+        '前方的风景好，我的意思是别回头',
+        '事已至此，先吃饭吧'
+
+    ]
+    var myDiv = document.getElementById("myDiv");
+
+    for(let i=0;i<strArr.length;i++){
+        if(strArr[i]){
+            let p=document.createElement("p");
+            myDiv.appendChild(p)
+            await textFun(strArr[i],p)
+        }
+    }
+
+}
+function textFun (str,myDiv){
+    return new Promise((resolve)=>{
+
+        var content = "";
+
+        var index = 0;
+
+        var ID = setInterval(()=> {
+
+            content += str[index];
+
+            myDiv.innerHTML = content + "_";
+
+            index++;
+
+            if(index === str.length){
+
+                myDiv.innerHTML = content ;
+
+                clearInterval(ID);
+
+                resolve('结束了')
+
+            }
+
+        },200);
+    })
+}
+</script>
+</body>
+</html>
